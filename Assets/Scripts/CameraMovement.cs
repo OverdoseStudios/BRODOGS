@@ -27,6 +27,9 @@ public class CameraMovement : MonoBehaviour
         float currentSpeed = movementSpeed * (Input.GetKey(KeyCode.LeftShift) ? sprintMultiplier : 1f);
         Vector3 translation = transform.TransformDirection(movement) * currentSpeed * Time.deltaTime;
         
+        // Flatten movement to maintain current height
+        translation.y = 0f;
+        
         // Apply movement
         transform.position += translation;
     }
