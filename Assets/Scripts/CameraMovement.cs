@@ -4,9 +4,18 @@ public class CameraMovement : MonoBehaviour
 {
     public float movementSpeed = 10f;
     public float sprintMultiplier = 2f;
+    public float rotationSpeed = 100f;
     
     private void Update()
     {
+        // Handle rotation
+        float rotationInput = 0f;
+        if (Input.GetKey(KeyCode.Q)) rotationInput -= 1f;
+        if (Input.GetKey(KeyCode.E)) rotationInput += 1f;
+        
+        float rotationAmount = rotationInput * rotationSpeed * Time.deltaTime;
+        transform.eulerAngles += new Vector3(0f, rotationAmount, 0f);
+
         // Get input axes
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
